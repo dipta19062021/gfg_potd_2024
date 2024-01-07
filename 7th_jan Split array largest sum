@@ -1,0 +1,28 @@
+class Solution:
+    def splitArray(self, arr, N, K):
+        # code here 
+        low=0
+        high=0
+        for i in range(N):
+            high+=arr[i]
+            low=max(low,arr[i])
+            
+        while low<=high:
+            mid=(low+high)//2
+            number = self.comp(arr, N, mid)
+            if number>K:
+                low=mid+1
+            else:
+                high=mid-1
+        return low
+                
+    def comp(self, arr, N, p):
+        s = 1
+        pg = 0
+        for i in range(N):
+            if pg + arr[i] <= p:
+                pg = pg + arr[i]
+            else:
+                s += 1
+                pg = arr[i]
+        return s
