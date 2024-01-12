@@ -1,0 +1,31 @@
+
+'''
+# Node Class
+class Node:
+    def __init__(self, data):   # data -> value stored in node
+        self.data = data
+        self.next = None
+'''
+
+class Solution:
+    def insertionSort(self, head):
+        #code here
+        nod=Node(0)
+        nod.next=head
+        prev,current=head,head.next
+        
+        while current:
+            if current.data >= prev.data:
+                prev,current=current,current.next
+                continue
+            
+            temp=nod
+            while current.data > temp.next.data:
+                temp=temp.next
+                
+            prev.next=current.next
+            current.next=temp.next
+            temp.next=current
+            current=prev.next
+            
+        return nod.next
