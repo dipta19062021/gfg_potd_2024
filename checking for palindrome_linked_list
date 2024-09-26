@@ -1,0 +1,27 @@
+class Solution:
+    def isPalindrome(self, head):
+        #code here
+        fast=head
+        slow=head
+        
+        #fund the middle element
+        while fast and fast.next:
+            fast= fast.next.next
+            slow=slow.next
+            
+        #find the reverse 
+        prev=None
+        while slow:
+            tmp = slow.next
+            slow.next=prev
+            prev=slow
+            slow=tmp
+            
+        l, r = head, prev
+        while r:
+            if l.data != r.data:
+                return False
+            l=l.next
+            r=r.next
+            
+        return True
