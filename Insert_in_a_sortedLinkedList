@@ -1,0 +1,20 @@
+class Solution:
+    def sortedInsert(self, head, x):
+        # code here
+        # return head of edited linked list
+        new_node=Node(x)
+        if head is None:
+            return new_node
+     
+        if x <= head.data:
+            new_node.next = head
+            return new_node
+    
+        current = head
+        while current.next and current.next.data < x:
+            current = current.next
+        
+        new_node.next = current.next
+        current.next = new_node
+        
+        return head
