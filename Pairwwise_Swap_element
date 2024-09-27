@@ -1,0 +1,34 @@
+class Solution:    
+    def pairWiseSwap(self, head):
+        # code here
+        if head is None or head.next is None:
+            return head
+
+    # Initialize the previous node as None and current as head
+        prev = None
+        current = head
+    
+        # The new head of the list will be the second node after the first swap
+        new_head = head.next
+    
+        # Loop through the list in pairs
+        while current and current.next:
+            # Nodes to be swapped
+            first = current
+            second = current.next
+    
+            # Perform the swap
+            first.next = second.next
+            second.next = first
+    
+            # If this is not the first pair, connect the previous pair's last node to the current swapped head
+            if prev:
+                prev.next = second
+    
+            # Move prev to the last node of the swapped pair
+            prev = first
+    
+            # Move current to the next pair
+            current = first.next
+    
+        return new_head
