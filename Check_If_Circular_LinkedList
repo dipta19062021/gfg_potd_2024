@@ -1,0 +1,14 @@
+class Solution:
+    def isCircular(self, head):
+        # Code here
+        if head is None:
+            return True
+            
+        slow=head
+        fast=head
+        while head:
+            slow=slow.next
+            fast=fast.next.next
+            
+        if slow==fast:
+            return True
