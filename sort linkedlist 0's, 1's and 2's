@@ -1,0 +1,33 @@
+def segregate(self, head):
+        #code here
+        if not head or not head.next:
+            return head
+
+        # Count the occurrences of 0, 1, and 2
+        count_0 = count_1 = count_2 = 0
+        current = head
+        while current:
+            if current.data == 0:
+                count_0 += 1
+            elif current.data == 1:
+                count_1 += 1
+            else:
+                count_2 += 1
+            current = current.next
+
+        # Update the values in the linked list based on counts
+        current = head
+        while current:
+            if count_0 > 0:
+                current.data = 0
+                count_0 -= 1
+            elif count_1 > 0:
+                current.data = 1
+                count_1 -= 1
+            else:
+                current.data = 2
+                count_2 -= 1
+            current = current.next
+
+        return head
+            
