@@ -1,0 +1,18 @@
+ef __init__(self):
+        self.bookings = []  
+        self.overlaps = []
+
+    def book(self, start: int, end: int) -> bool:
+
+        for os, oe in self.overlaps:
+            
+            if max(start, os) < min(end, oe):  # There is an overlap
+                return False
+        for bs, be in self.bookings:
+           
+            if max(start, bs) < min(end, be):  # There is an overlap
+                self.overlaps.append((max(start, bs), min(end, be)))
+        
+        self.bookings.append((start, end))
+        
+        return True
